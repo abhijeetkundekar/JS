@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="input_field" type="text" />
+  </body>
+
+  <script>
+    let inputField = document.querySelector("#input_field");
+    // Function to process input
+    function processInput(query) {
+      console.log(`Processing input..."${query}"`);
+    }
+
+    function debounce1(cb, delay) {
+      let timerID;
+
+      return function (event) {
+        const query = event.target.value;
+
+        clearTimeout(timerID);
+
+        timerID = setTimeout(function () {
+          cb(query);
+        }, delay);
+      };
+    }
+
+    const debounceProcessInput = debounce1(processInput, 1000);
+    // Directly attach the processInput function to the input event
+    // This means the function will be called every time there's user input
+    inputField.addEventListener("input", debounceProcessInput);
+  </script>
+</html>
