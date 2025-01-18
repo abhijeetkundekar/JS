@@ -18,8 +18,10 @@ quizForm.addEventListener("submit", (e) => {
   userAnswers.forEach(function (userAnswer, index) {
     if (userAnswer === correctAnswers[index]) {
       score++;
+      //questions[index].classList.remove("wrong");
       questions[index].classList.add("correct");
     } else {
+      //questions[index].classList.remove("correct");
       questions[index].classList.add("wrong");
     }
   });
