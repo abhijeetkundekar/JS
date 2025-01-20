@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Throttling Example</title>
+  </head>
+  <body>
+    <h1>Throttling</h1>
+    <button id="clickMe">Click Me!</button>
+
+    <script>
+      const button = document.querySelector("#clickMe");
+      function callApi() {
+        console.log("calling api");
+      }
+      function throttle(cb, delay) {
+        let alreadyClicked = true;
+        return function () {
+          if (alreadyClicked) {
+            alreadyClicked = false;
+
+            cb();
+
+            setTimeout(function () {
+              alreadyClicked = true;
+            }, delay);
+          }
+        };
+      }
+      const throttledProcess = throttle(callApi, 9000);
+      button.addEventListener("click", throttledProcess);
+    </script>
+  </body>
+</html>
