@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Bind</h1>
+  </body>
+  <script>
+    const person1 = {
+      name: "John",
+      age: 30,
+      describe: function (choice1) {
+        //this is important
+        console.log(
+          this.name + " is " + this.age + " years old. He likes: " + choice1
+        );
+      },
+    };
+    person1.describe(["playing", "coding"]);
+
+    const person2 = {
+      name: "abhi",
+      age: 23,
+    };
+
+    let choices = ["bhajan", "meditation"];
+    let fn = person1.describe.bind(person2);
+    fn(choices);
+    let numbers = [4, 2, 3, 5];
+    console.log(Math.max.apply(null, numbers));
+  </script>
+</html>

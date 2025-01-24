@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Call</h1>
+    <script src="call.js"></script>
+  </body>
+  <script>
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+
+      this.describe = function () {
+        console.log("pizza  is coming for " + this.name);
+      };
+
+      this.describe2 = function (location) {
+        console.log(
+          `${this.name} is coming for pizza to the location ${location}`
+        );
+      };
+    }
+    const p1 = new Person("adam", 24);
+    p1.describe();
+    p1.describe2("belgaum");
+
+    function Person2(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    const p2 = new Person2("aby", 35);
+    p1.describe.call(p2);
+    console.log(p2);
+    p1.describe2.call(p2, "pune");
+  </script>
+</html>

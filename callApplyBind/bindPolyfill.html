@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Bind</h1>
+  </body>
+  <script>
+    const person1 = {
+      name: "John",
+      age: 30,
+      describe: function (choice1) {
+        //this is important
+        console.log(
+          this.name + " is " + this.age + " years old. He likes: " + choice1
+        );
+      },
+    };
+    person1.describe(["playing", "coding"]);
+
+    const person2 = {
+      name: "abhi",
+      age: 23,
+    };
+
+    Function.prototype.myBind = function (context, args = []) {
+      if (typeof this != "function") {
+        throw new Error("this is not function");
+      }
+
+      context.myfuntion = this;
+      return function (...newargs) {
+        return context.myfuntion([...args, ...newargs]);
+      };
+    };
+
+    let choices = ["bhajan", "meditation"];
+    let fn = person1.describe.myBind(person2, ["dj"]); //...args coming from here
+    fn(choices); //...new args coming from here
+    let numbers = [4, 2, 3, 5];
+    console.log(Math.max.apply(null, numbers));
+  </script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Apply</h1>
+  </body>
+  <script>
+    const person1 = {
+      name: "John",
+      age: 30,
+      describe: function (choice1, choice2) {
+        //this is important
+        console.log(
+          this.name + " is " + this.age + " years old. He likes: " + choice1,
+          choice2
+        );
+      },
+    };
+    person1.describe(["playing", "coding"]);
+
+    const person2 = {
+      name: "abhi",
+      age: 23,
+    };
+
+    let choices = ["bhajan", "meditation"];
+
+    Function.prototype.myApply = function (context = {}, args = []) {
+      if (typeof this != "function") {
+        throw new Error("this should be of type function");
+      }
+
+      context.myFunction = this;
+      context.myFunction(...args);
+    };
+    person1.describe.myApply(person2, choices);
+  </script>
+</html>
