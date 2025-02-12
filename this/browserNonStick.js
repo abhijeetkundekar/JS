@@ -1,6 +1,6 @@
 //1
 console.log("scenario 1");
-console.log(this); //empty obj
+console.log(this); //window obj
 
 //2
 console.log("scenario 2");
@@ -8,7 +8,7 @@ console.log("scenario 2");
 function sce2() {
   console.log(this);
 }
-sce2(); //global object
+sce2(); //window object
 
 console.log("scenario 3");
 const obj = {
@@ -34,7 +34,7 @@ const obj1 = {
   },
 };
 
-obj1.fn1(); //global object
+obj1.fn1(); //window object
 
 //Arrow functions
 console.log("arrow funtion always refers to Scenario 1");
