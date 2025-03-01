@@ -22,10 +22,10 @@ Promise.myAllSettled = function (values) {
       Promise.resolve(item)
         .then((data) => {
           console.log("data is ", data);
-          results[index] = { status: "fulfilles", value: data };
+          results[index] = { status: "fulfilled", value: data };
         })
         .catch((error) => {
-          results[index] = { status: "rejected", value: data };
+          results[index] = { status: "rejected", reason: error };
         })
         .finally(() => {
           total++;
@@ -54,7 +54,7 @@ Promise.allSettled1 = function (promises) {
   return Promise.all(mappedPromises);
 };
 //all must be resolved otherwise error
-Promise.allSettled1([fetchUserData(), fetchAllData()])
+Promise.myAllSettled([fetchUserData(), fetchAllData()])
   .then((results) => {
     console.log("fetch user ", results[0]);
     console.log("fetch all ", results[1]);

@@ -28,3 +28,24 @@ let result1 = a.myReduce(function (acc, num) {
 }, 1);
 
 console.log("my polyfill reduce ans ", result1);
+
+Array.prototype.myReduce1 = function (cb, initialValue) {
+  let accumlator, initialIndex;
+  if (arguments.length == 2) {
+    accumlator = initialValue;
+    initialIndex = 0;
+  } else {
+    accumlator = this[0];
+    initialIndex = 1;
+  }
+  for (let i = initialIndex; i < this.length; i++) {
+    accumlator = cb(accumlator, this[i]);
+  }
+  return accumlator;
+};
+
+let result2 = a.myReduce1(function (acc, num) {
+  return (acc = acc * num);
+}, 1);
+
+console.log("result2 ", result2);

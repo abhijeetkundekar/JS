@@ -22,3 +22,22 @@ let res = arr.myFilter(function (num) {
 });
 
 console.log("new result is ", res);
+
+Array.prototype.myFilter1 = function (cb, thisArgs) {
+  const arr = thisArgs || this;
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (cb(arr[i], i, arr)) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+};
+let ress = arr.myFilter1(
+  function (num) {
+    return num < 5;
+  },
+  [0, 1]
+);
+
+console.log("new result is l", ress);
